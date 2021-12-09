@@ -8,7 +8,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client({intents: ["GUILDS", "GUILD_MESSAGES"]});
 */
 
-const prefix = '~';
+const prefix = '/';
 
 const fs = require('fs');
 
@@ -27,7 +27,7 @@ for(const file of commandFiles){
 }
 
 client.once('ready', () => {
-    console.log('Bot is online!')
+    console.log('Whiterun Guard online!')
 });
 
 client.on('messageCreate', message =>{
@@ -39,11 +39,21 @@ client.on('messageCreate', message =>{
 
     if(command === 'ping'){
         client.commands.get('ping').execute(message, args);
+        //How you originally do this => message.channel.send('Pong');
     }
     else if(command == "hello"){
-        message.channel.send('How do you do, thane.');
+        client.commands.get('hello').execute(message, args);
+    }
+    else if(command == "commands"){
+        client.commands.get('commands').execute(message, args);
+    }
+    else if(command == "demand_thane"){
+        client.commands.get('demand_thane').execute(message, args);
+    }
+    else if(command == "steal"){
+        client.commands.get('steal').execute(message, args);
     }
 });
 
 
-client.login('');
+client.login('OTE4MTg3OTMxMjcxODIzNDEw.YbDnJQ.6TE5crztEn68agsIyD-nAY_cfNw');
