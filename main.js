@@ -1,12 +1,6 @@
 //Trevor Fournier Bot
-
 const { Client, Intents, Collection } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
-/*
-Wrong lines from tutorial:
-const Discord = require('discord.js');
-const client = new Discord.Client({intents: ["GUILDS", "GUILD_MESSAGES"]});
-*/
 
 const prefix = '/';
 
@@ -27,7 +21,7 @@ for(const file of commandFiles){
 }
 
 client.once('ready', () => {
-    console.log('Whiterun Guard online!')
+    console.log('ETH Bot is online!')
 });
 
 client.on('messageCreate', message =>{
@@ -37,23 +31,16 @@ client.on('messageCreate', message =>{
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
 
-    if(command === 'ping'){
-        client.commands.get('ping').execute(message, args);
-        //How you originally do this => message.channel.send('Pong');
-    }
-    else if(command == "hello"){
+    if(command == "hello"){
         client.commands.get('hello').execute(message, args);
     }
     else if(command == "commands"){
         client.commands.get('commands').execute(message, args);
     }
-    else if(command == "demand_thane"){
-        client.commands.get('demand_thane').execute(message, args);
-    }
-    else if(command == "steal"){
-        client.commands.get('steal').execute(message, args);
+    else if(command == "balance"){
+        client.commands.get('balance').execute(message, args);
     }
 });
 
-
-client.login('');
+client.login(process.env.BOT_TOKEN)
+//client.login(enviro.token);
